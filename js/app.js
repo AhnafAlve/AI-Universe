@@ -12,11 +12,14 @@ const dispayItems = items =>{
         aiDiv.classList.add('col');
         aiDiv.innerHTML=`
         <div class="card p-4">
-        <img src="${item.image}" class="card-img-top img-fluid" alt="...">
+        <img src="${item.image}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">${item.name}</h5>
+            <h5 class="card-title">Features</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
+        <div class="card-footer">
+        <h5>${item.name}</h5>
+      </div>
     </div>
         `
         aiContainer.appendChild(aiDiv);
