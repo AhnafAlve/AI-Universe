@@ -1,20 +1,20 @@
-const loadData = async ()=>{
+const loadData = async () => {
     loadSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     const res = await fetch(url);
     const data = await res.json();
-    dispayItems(data.data.tools.slice(0,6))
+    dispayItems(data.data.tools.slice(0, 6))
 }
 
-const dispayItems =(tools)=>{
-    tools.innerHTML= ''
+const dispayItems = (tools) => {
+    tools.innerHTML = ''
     console.log(tools)
     const mainId = document.getElementById('main-id');
 
-    tools.forEach(tool =>{
+    tools.forEach(tool => {
         const aiDiv = document.createElement('div');
         aiDiv.classList.add('col');
-        aiDiv.innerHTML =`
+        aiDiv.innerHTML = `
     <div class="card h-100">
         <img src="${tool.image}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -47,29 +47,29 @@ const dispayItems =(tools)=>{
     </div>
         
         `
-    
+
         mainId.appendChild(aiDiv);
-        
-    }) 
+
+    })
     loadSpinner(false)
 
 }
-const loadSpinner = isLoad=>{
-    const spinner =document.getElementById('loader');
-    if(isLoad){
+const loadSpinner = isLoad => {
+    const spinner = document.getElementById('loader');
+    if (isLoad) {
         spinner.classList.remove('d-none');
     }
-    else{
+    else {
         spinner.classList.add('d-none')
     }
 }
-const toolsInfo = async (id) =>{
+const toolsInfo = async (id) => {
     const url = ` https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayDetails(data.data)
 }
-const displayDetails = tools =>{
+const displayDetails = tools => {
     console.log(tools)
     const loadDetails = document.getElementById('details-add');
     const parent = document.getElementById('parent');
@@ -87,8 +87,8 @@ const displayDetails = tools =>{
             tools?.pricing?.[1].plan : 'no data Found'}</div>
 
         <div style="height:80px;" class="w-100 bg-white border text-success rounded-3 p-2 m-auto">
-            ${tools?.pricing?.[2].price ? tools?.pricing?.[2].price: 'no data Found'} <br> ${tools?.pricing?.[2].plan ?
-            tools?.pricing?.[2].plan: 'no data found'}</div>
+            ${tools?.pricing?.[2].price ? tools?.pricing?.[2].price : 'no data Found'} <br> ${tools?.pricing?.[2].plan ?
+            tools?.pricing?.[2].plan : 'no data found'}</div>
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
@@ -110,15 +110,15 @@ const displayDetails = tools =>{
         </div>
      
     `
-parent.appendChild(addedChild);
+    parent.appendChild(addedChild);
 
-const detailsContainer = document.getElementById('image-add');
-detailsContainer.innerHTML = `
+    const detailsContainer = document.getElementById('image-add');
+    detailsContainer.innerHTML = `
 
     <div>
     <img class="img-fluid w-100 rounded-3 mb-3 accuracy-p" src="${tools?.image_link?.[0] ? tools?.image_link?.[0] : 'no image found'}">
     
-    <p style="width:50px;" class="text-center bg-danger rounded-3 text-white terimaka">${tools ?.accuracy?.score ? tools.accuracy.score :''}</p>
+    <p style="width:50px;" class="text-center bg-danger rounded-3 text-white terimaka">${tools?.accuracy?.score ? tools.accuracy.score : ''}</p>
     </div>
     <h3 class="text-center mb-3">${tools?.input_output_examples[0]?.input ? tools?.input_output_examples[0]?.input : 'comming soon'}</h3>
     <p class="text-center mb-3">${tools?.input_output_examples[0]?.output ? tools?.input_output_examples[0]?.output : 'no data found'}</p>
@@ -128,13 +128,13 @@ detailsContainer.innerHTML = `
 const displayAllData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        dispayItems(data.data.tools)
-      });
+        .then((res) => res.json())
+        .then((data) => {
+            dispayItems(data.data.tools)
+        });
     const loadBtn = document.getElementById("show-btn");
-    loadBtn.style.display='none'
-    parent.style.display='none'
-  };
-     
+    loadBtn.style.display = 'none'
+    parent.style.display = 'none'
+};
+
 loadData();
