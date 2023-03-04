@@ -1,8 +1,9 @@
 const loadAi = async() => {
+    // loadSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     const res = await fetch(url);
     const data = await res.json();
-    dispayItems(data.data.tools);
+    dispayItems(data.data.tools.slice(0,6));
 }
 
 const dispayItems = items =>{
